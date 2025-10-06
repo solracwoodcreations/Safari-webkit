@@ -1,22 +1,26 @@
-// script.js
-if ('paintWorklet' in CSS) {
-  const blob = new Blob([`
-    class StripesPainter {
-      static get inputProperties() { return []; }
-      paint(ctx, size) {
-        const { width, height } = size;
-        const stripeHeight = 10;
-        for (let y = 0; y < height; y += stripeHeight * 2) {
-          ctx.fillStyle = "#ff4081";
-          ctx.fillRect(0, y, width, stripeHeight);
-        }
-      }
-    }
-    registerPaint("stripes", StripesPainter);
-  `], { type: 'application/javascript' });
+const features = [
+  {
+    name: 'CSS Backdrop Filter',
+    test: () => CSS.supports('backdrop-filter', 'blur(5px)')
+  },
+  {
+    name: 'CSS Subgrid',
+    test: () => CSS.supports('display', 'subgrid')
+  },
+  {
+    name: 'Web Animations API',
+    test: () => typeof document.body.animate === 'function'
+  },
+  {
+    name: 'WebKit Line Clamp',
+    test: () => CSS.supports('-webkit-line-clamp', '3')
+  }
+];
 
-  const blobURL = URL.createObjectURL(blob);
-  CSS.paintWorklet.addModule(blobURL);
-} else {
-  console.warn('CSS.paintWorklet not supported in this browser.');
-}
+const list = document.getElementById('features');
+
+features.forEach(feature => {
+  const li = document.createElement('li');
+  li.textContent = `${feature.name}: ${feature.test() ? '✅ Supported' : '❌ Not supported'}`;
+  list.appendChild(li);
+});
