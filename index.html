@@ -2,13 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Safari WebKit Experiment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feature Flag Playground</title>
   <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
 </head>
 <body>
-  <h1>Safari WebKit Paint API Demo</h1>
-  <button class="fancy-button">Click Me</button>
+  <header>
+    <h1>🧪 Feature Flag Playground</h1>
+    <p>Check your browser's support for experimental WebKit and other features</p>
+  </header>
+
+  <main>
+    <section id="feature-list">
+      <h2>Detected Features</h2>
+      <ul id="features"></ul>
+    </section>
+
+    <section id="demo">
+      <h2>Live Demo Zone</h2>
+      <div id="demo-box">Hover me!</div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
